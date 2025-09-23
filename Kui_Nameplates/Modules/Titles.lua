@@ -5,7 +5,8 @@
 ]]
 local addon = LibStub("AceAddon-3.0"):GetAddon("KuiNameplates")
 local mod = addon:NewModule("Titles", addon.Prototype, "AceEvent-3.0", "AceTimer-3.0")
-mod.uiName = "Titles"
+-- Light blue coloured name for options list
+mod.uiName = "|cff55aaffTitles|r"
 
 local separators = {
     ANGLED = "<%s>",
@@ -16,26 +17,7 @@ local separators = {
     CURLY = "{%s}"
 }
 
-local iconPositions = {
-    LEFT = "LEFT",
-    RIGHT = "RIGHT", 
-    TOP = "TOP",
-    BOTTOM = "BOTTOM"
-}
-
--- Class textures mapping (WoTLK class coordinates)
-local classTextures = {
-    WARRIOR = {0, 0.25, 0, 0.25},
-    MAGE = {0.25, 0.5, 0, 0.25},
-    ROGUE = {0.5, 0.75, 0, 0.25},
-    DRUID = {0.75, 1, 0, 0.25},
-    HUNTER = {0, 0.25, 0.25, 0.5},
-    SHAMAN = {0.25, 0.5, 0.25, 0.5},
-    PRIEST = {0.5, 0.75, 0.25, 0.5},
-    WARLOCK = {0.75, 1, 0.25, 0.5},
-    PALADIN = {0, 0.25, 0.5, 0.75},
-    DEATHKNIGHT = {0.25, 0.5, 0.5, 0.75}
-}
+-- (Class icon logic removed; now handled by ClassIcons module)
 
 local tooltip
 local wipe = wipe
@@ -152,26 +134,6 @@ local function CacheNPCTitle(unit)
     end
 end
 
-local function CacheClass(unit)
-    -- Always cache class info for player units. Display of the class icon
-    -- is now handled exclusively by the NameOnly module, so we no longer
-    -- gate caching behind a Titles option. This prevents missed icons when
-    -- the user has disabled the (now redundant) Titles class icon toggle.
-    if not UnitIsPlayer(unit) then return end
-    local name = GetUnitName(unit)
-    if not name then return end
-    local _, class = UnitClass(unit)
-    if not class then return end
-    local g = addon.db.global
-    -- Debug output
-    DPrint("CacheClass", unit, name, class or 'nil')
-    if g.UnitClass[name] ~= class then
-        g.UnitClass[name] = class
-    DPrint("Cached class", name, class)
-        mod:UpdateVisibleNameplate(name)
-    end
-end
-
 function mod:UpdateVisibleNameplate(name)
     DPrint("UpdateVisibleNameplate", name)
     for _, frame in pairs(addon.frameList) do
@@ -180,7 +142,6 @@ function mod:UpdateVisibleNameplate(name)
             if currentName == name then
                 DPrint("Match frame", name)
                 self:ApplyTitle(frame.kui)
-                -- class icon now handled exclusively by NameOnly module
             end
         end
     end
@@ -307,7 +268,6 @@ end
 function mod:UPDATE_MOUSEOVER_UNIT() 
     CacheGuild("mouseover")
     CacheNPCTitle("mouseover")
-    CacheClass("mouseover")
     -- Force immediate refresh for mouseover unit
     local name = GetUnitName("mouseover")
     if name then
@@ -318,7 +278,6 @@ end
 function mod:PLAYER_TARGET_CHANGED() 
     CacheGuild("target")
     CacheNPCTitle("target")
-    CacheClass("target")
     -- Force immediate refresh for target
     local name = GetUnitName("target")
     if name then
@@ -436,7 +395,6 @@ function mod:OnDisable()
     for _, frame in pairs(addon.frameList) do
         if frame.kui then
             if frame.kui.titleFS then frame.kui.titleFS:Hide() end
-            if frame.kui.classIcon then frame.kui.classIcon:Hide() end
         end
     end
 end

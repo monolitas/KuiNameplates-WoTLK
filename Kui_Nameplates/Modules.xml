@@ -9,4 +9,6 @@
 <Script file="Modules\TargetArrows.lua" />
 <Script file="Modules\LowHealth.lua" />
 <Script file="Modules\NameOnly.lua" />
+<Script file="Modules\ClassIcons.lua" />
+<Script file="Modules\Titles.lua" />
 </Ui>

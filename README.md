@@ -2,10 +2,18 @@
 
 Forked from bkader.
 
-**Added Features:
-* Npc/Guild Titles**
+Added Features:
+* Npc/Guild Titles
+<img width="117" height="47" alt="image" src="https://github.com/user-attachments/assets/7bda810e-2301-417c-9b34-c262691c5718" />
+* Class icons
+<img width="103" height="62" alt="image" src="https://github.com/user-attachments/assets/941eb79e-da67-45f0-a772-8c475ff595ac" />
+* Custom name colours for Party>Guild>Friend>Raid
+  <img width="299" height="331" alt="image" src="https://github.com/user-attachments/assets/a48ed88e-1f01-4a71-8d97-9c9d04827be3" />
+* More combo points features
+<img width="384" height="264" alt="image" src="https://github.com/user-attachments/assets/0544ae6b-f97e-4047-9141-98250dd5d90a" />
 
 ## Install:
+
 
 1. [Download the package.]
 2. Open the archive, then open folder `KuiNameplates-WoTLK`.

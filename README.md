@@ -9,7 +9,7 @@ Added Features:
 
 * Class icons
   
-<img width="103" height="62" alt="image" src="https://github.com/user-attachments/assets/941eb79e-da67-45f0-a772-8c475ff595ac" />
+
 
 * Custom name colours for Party>Guild>Friend>Raid
   

@@ -11,4 +11,5 @@
 <Script file="Modules\NameOnly.lua" />
 <Script file="Modules\ClassIcons.lua" />
 <Script file="Modules\Titles.lua" />
+<Script file="Modules\Colours.lua" />
 </Ui>
